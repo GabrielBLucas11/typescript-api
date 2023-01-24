@@ -9,28 +9,32 @@ class UsersService implements CRUD {
         return usersDao.AddUser(resource);
     }
 
-    async deleteById (id:string) {
-        return usersDao.removeUserById(id);
-    }
-
     async list (limit: number, page: number) {
-        return usersDao.getUsers();
+        return usersDao.getUsers(limit, page);
     }
 
-    async patchById (id: string, resource: PatchUserDto) {
-        return usersDao.patchUserById(id, resource);
+    async patchById (id: string, resource: PatchUserDto): Promise<any> {
+        return usersDao.updateUserById(id, resource);
     }
 
     async readById (id: string) {
         return usersDao.getUserById(id);
     }
 
-    async putById (id: string, resource: PutUserDto) {
-        return usersDao.putUserById(id, resource);
+    async putById (id: string, resource: PutUserDto): Promise<any> {
+        return usersDao.updateUserById(id, resource);
+    }
+    
+    async deleteById (id:string): Promise<any> {
+        return usersDao.removeUserById(id);
     }
 
     async getUserByEmail (email: string) {
         return usersDao.getUserByEmail(email);
+    }
+
+    async getUserByEmailWithPassword(email: String) {
+        return usersDao.getUserByEmailWithPassword(email);
     }
 }
 
