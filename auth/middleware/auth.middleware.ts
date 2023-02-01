@@ -2,7 +2,7 @@ import express from 'express';
 import usersService from '../../users/services/users.service';
 import * as argon2 from 'argon2';
 
-class AuthMiddlware {
+class AuthMiddleware {
 
     async verifyUserPassword(
         req: express.Request,
@@ -24,6 +24,6 @@ class AuthMiddlware {
         }
         res.status(400).send({ errors: ['Invalid email and/or password'] });
     }
-
-
 }
+
+export default new AuthMiddleware();
